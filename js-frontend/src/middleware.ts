@@ -1,7 +1,7 @@
-import { auth } from "@/auth"
-import { NextResponse } from "next/server"
+import { auth } from '@/auth'
+import { NextResponse } from 'next/server'
 
-const protectedRoutes = ["/dashboard", "/tests", "/settings", "/repositories"]
+const protectedRoutes = ['/dashboard', '/tests', '/settings', '/repositories']
 
 console.log(protectedRoutes)
 
@@ -12,7 +12,7 @@ export default auth((req) => {
   )
 
   if (isProtectedRoute && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/", req.url))
+    return NextResponse.redirect(new URL('/', req.url))
   }
 
   // Allow the request to proceed
@@ -21,5 +21,5 @@ export default auth((req) => {
 
 // This line configures which routes the middleware should run on
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
