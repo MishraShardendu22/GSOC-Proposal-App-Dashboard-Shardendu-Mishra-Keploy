@@ -3,8 +3,8 @@ import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { SessionProvider } from 'next-auth/react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/components/Body/Header'
+import Footer from '@/components/Body/Footer'
 
 const poppins = Poppins({
   subsets: ['latin'],
