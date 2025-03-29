@@ -1,4 +1,4 @@
-module gthub.com/MishraShardendu22/go-backend
+module github.com/MishraShardendu22/go-backend
 
 go 1.24
 
