@@ -17,16 +17,7 @@ const Tabs = () => {
         aria-current="page"
       >
         Repositories
-      </Link>
-
-      <Link
-        href="/tests"
-        className="p-4 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
-        aria-current="page"
-      >
-        Tests
-      </Link>
-      
+      </Link>      
       <Link
         href="/settings"
         className="p-4 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"

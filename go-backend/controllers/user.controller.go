@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"time"
+
 	"github.com/MishraShardendu22/go-backend/database"
 	"github.com/MishraShardendu22/go-backend/model"
 	utils "github.com/MishraShardendu22/go-backend/util"
@@ -11,9 +13,12 @@ import (
 
 func RegisterUser(c *fiber.Ctx) error {
 	var newUser model.User
+
 	if err := c.BodyParser(&newUser); err != nil {
 		return utils.ResponseAPI(c, 400, "Error parsing request body", "", "")
 	}
+
+	newUser.CreatedAt = time.Now().Local()
 
 	if newUser.Name == "" || newUser.Email == "" || newUser.Image == "" {
 		return utils.ResponseAPI(c, 400, "Please fill all the fields", "", "")

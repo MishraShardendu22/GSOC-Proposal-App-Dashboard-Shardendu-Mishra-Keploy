@@ -164,13 +164,13 @@ A **wireframe** is a visual blueprint of a web application’s layout. It **show
 **Example Wireframe for Keploy Dashboard:**
 
 ```
--------------------------------------
-| Header (Logo, Nav, User Profile) |
--------------------------------------
+----------------------------------------------------------------
+|               Header (Logo, Nav, User Profile)               |
+----------------------------------------------------------------
 | Sidebar (Repos, Filters) |  Main Dashboard (Charts, Metrics) |
--------------------------------------
-|         Recent PRs       |   Test Results Table |
--------------------------------------
+----------------------------------------------------------------
+|         Recent PRs       |   Test Results Table              |
+----------------------------------------------------------------
 ```
 
 You can use tools like **Figma, Adobe XD, or Balsamiq** to design wireframes.
@@ -185,3 +185,10 @@ You can use tools like **Figma, Adobe XD, or Balsamiq** to design wireframes.
 4. **Develop a Proof-of-Concept (PoC)** – Implement a basic dashboard with sample test data.
 5. **Integrate Real Data Sources** – Connect GitHub/GitLab APIs and Keploy’s test results.
 6. **Optimize & Extend** – Improve UI/UX and add custom templates for test reports.
+
+
+<!-- Pages -->
+
+1.) Profile - Just the user details iamge and other things.
+2.) Dashboard - Shows Analytics of account like total pr's and other detail
+3.) Repositories - Shows details of all repos and on selection shows detials of a specific repo
