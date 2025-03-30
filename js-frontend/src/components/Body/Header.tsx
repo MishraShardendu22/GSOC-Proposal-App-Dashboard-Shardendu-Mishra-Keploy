@@ -5,6 +5,7 @@ import SignOut from '../AuthButton/SignOut'
 
 const Header = async () => {
   const session = await auth();
+  console.log('Session:', session)
 
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between bg-white shadow-md p-4">
