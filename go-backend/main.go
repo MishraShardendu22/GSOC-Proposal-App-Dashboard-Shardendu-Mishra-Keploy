@@ -10,6 +10,7 @@ import (
 	"github.com/joho/godotenv"
 
 	"github.com/MishraShardendu22/go-backend/database"
+	"github.com/MishraShardendu22/go-backend/routes"
 	"github.com/MishraShardendu22/go-backend/util"
 )
 
@@ -67,5 +68,5 @@ func ConnectToDatabases() {
 }
 
 func SetUpRoutes(app *fiber.App) {
-
+	routes.SetUpUserRoutes(app)
 }

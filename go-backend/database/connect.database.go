@@ -3,29 +3,28 @@ package database
 import (
 	"context"
 	"fmt"
+	"log"
 
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func ConnectToDatabase(MONGO_URI string) {
-	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	opts := options.Client().ApplyURI(MONGO_URI).SetServerAPIOptions(serverAPI)
+// This basically keeps the connection to the databse  alive  
+var Client *mongo.Client
 
-	client, err := mongo.Connect(context.TODO(), opts)
+func ConnectToDatabase(MONGODB_URI string) {
+	clientOptions := options.Client().ApplyURI(MONGODB_URI)
+	client, err := mongo.Connect(context.Background(), clientOptions)
+
 	if err != nil {
-		panic(err)
+		log.Fatal("Error connecting to the database:", err)
 	}
 
-	defer func() {
-		if err = client.Disconnect(context.TODO()); err != nil {
-			panic(err)
-		}
-	}()
-
-	if err := client.Database("admin").RunCommand(context.TODO(), bson.D{{"ping", 1}}).Err(); err != nil {
-		panic(err)
+	err = client.Ping(context.Background(), nil)
+	if err != nil {
+		log.Fatal("Error pinging the database:", err)
 	}
-	fmt.Println("Pinged your deployment. You successfully connected to MongoDB!")
+
+	Client = client
+	fmt.Println("Connected to the database")
 }
