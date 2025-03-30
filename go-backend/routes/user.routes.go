@@ -6,7 +6,7 @@ import (
 )
 
 func SetUpUserRoutes(app *fiber.App) {
-	userGroup := app.Group("/user") 
+	userGroup := app.Group("/api/user") 
 
 	userGroup.Post("/register", controllers.RegisterUser)
 }
