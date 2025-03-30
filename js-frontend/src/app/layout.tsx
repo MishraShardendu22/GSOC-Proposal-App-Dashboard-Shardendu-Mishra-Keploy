@@ -2,9 +2,9 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-import { SessionProvider } from 'next-auth/react'
 import Header from '@/components/Body/Header'
 import Footer from '@/components/Body/Footer'
+import { SessionProvider } from 'next-auth/react'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -24,10 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(poppins.className, 'min-h-screen')}>
+      <body className={cn(poppins.className, "flex flex-col min-h-screen")}>
         <SessionProvider>
           <Header />
-          {children}
+
+          <main className="flex-grow">
+            {children}
+          </main>
+
           <Footer />
         </SessionProvider>
       </body>

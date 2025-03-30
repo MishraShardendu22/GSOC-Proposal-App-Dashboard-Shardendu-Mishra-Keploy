@@ -4,19 +4,21 @@ import SignIn from '../AuthButton/SignIn'
 import SignOut from '../AuthButton/SignOut'
 
 const Header = async () => {
-  const session = await auth();
-  console.log('Session:', session)
+  const session = await auth()
 
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between bg-white shadow-md p-4">
-      <div className="text-xl font-semibold text-gray-800">
-        Keploy App Dashboard
+    <nav className="sticky top-0 z-50 flex items-center justify-between bg-background/95 backdrop-blur-sm border-b border-border/40 px-6 py-3 transition-all duration-200">
+      <div className="flex items-center">
+        <div className="text-xl font-bold text-primary">
+          Keploy App Dashboard
+        </div>
       </div>
       <div className="flex-1 flex justify-center">
         <Tabs />
       </div>
-      {session ? <SignOut /> : <SignIn />}
-
+      <div className="flex items-center">
+        {session ? <SignOut /> : <SignIn />}
+      </div>
     </nav>
   )
 }

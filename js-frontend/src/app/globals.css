@@ -82,6 +82,7 @@
   --accent: #7861A5;
   --accent-foreground: #2E1F5E;
   --destructive: #FF6B3D;
+  --destructive-foreground: #FAF4EF;
   --border: #E65428;
   --input: #F5F5F5;
   --ring: #7861A5;
@@ -101,7 +102,7 @@
 }
 
 .dark {
-  --background: #3D3D3D;
+  --background: #1A1A1A;
   --foreground: #FAF4EF;
   --card: #2E1F5E;
   --card-foreground: #FAF4EF;
@@ -111,11 +112,12 @@
   --primary-foreground: #FAF4EF;
   --secondary: #7861A5;
   --secondary-foreground: #FAF4EF;
-  --muted: #2E1F5E;
-  --muted-foreground: #7861A5;
+  --muted: #2A2A2A;
+  --muted-foreground: #BBBBBB;
   --accent: #7861A5;
   --accent-foreground: #FAF4EF;
   --destructive: #FF6B3D;
+  --destructive-foreground: #FAF4EF;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
   --ring: #7861A5;
@@ -141,5 +143,45 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+/* Smooth transitions between light and dark mode */
+html.dark {
+  color-scheme: dark;
+}
+
+html {
+  color-scheme: light;
+}
+
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Improved focus styles */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Improved scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }

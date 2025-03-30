@@ -1,27 +1,45 @@
-import Link from "next/link"
+"use client"
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const Tabs = () => {
+  const pathname = usePathname()
+  const isActive = (path: string) => pathname === path
+
   return (
-    <div>
+    <div className="flex space-x-1 bg-muted/40 p-1 rounded-lg">
       <Link
         href="/dashboard"
-        className="p-4 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
-        aria-current="page"
+        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+          isActive('/dashboard')
+            ? 'bg-accent text-accent-foreground shadow-sm'
+            : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+        }`}
+        aria-current={isActive('/dashboard') ? 'page' : undefined}
       >
         Dashboard
       </Link>
 
       <Link
         href="/repositories"
-        className="p-4 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
-        aria-current="page"
+        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+          isActive('/repositories')
+            ? 'bg-accent text-accent-foreground shadow-sm'
+            : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+        }`}
+        aria-current={isActive('/repositories') ? 'page' : undefined}
       >
         Repositories
-      </Link>      
+      </Link>
       <Link
         href="/settings"
-        className="p-4 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
-        aria-current="page"
+        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+          isActive('/settings')
+            ? 'bg-accent text-accent-foreground shadow-sm'
+            : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+        }`}
+        aria-current={isActive('/settings') ? 'page' : undefined}
       >
         Settings
       </Link>
