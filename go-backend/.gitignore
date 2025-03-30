@@ -21,7 +21,6 @@ coverage.out
 
 # Go modules
 go.sum
-go.mod
 
 # IDE and editor settings
 .vscode/
