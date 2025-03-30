@@ -2,21 +2,20 @@ import { User } from './Types';
 import { axiosInstance } from '@/util/axiosInstance';
 
 const registerUserMutation = async (user: User) => {
-  const res = await axiosInstance.post('/user/register', {
-    name: user.name,
-    email: user.email,
-    image: user.image,
-  });
-  return res.data;
-};
-
-const RegisterUser = async (user: User) => {
   try {
-    return await registerUserMutation(user);
+    console.log('Registering user:', user);
+    
+    const res = await axiosInstance.post('/user/register',user);
+
+    return res.data;
   } catch (error) {
     console.error('Error registering user:', error);
     throw error;
   }
+};
+
+const RegisterUser = async (user: User) => {
+  return await registerUserMutation(user);
 };
 
 export { RegisterUser };

@@ -4,7 +4,7 @@ import SignIn from '../AuthButton/SignIn'
 import SignOut from '../AuthButton/SignOut'
 
 const Header = async () => {
-  const session = await auth()
+  const session = await auth();
 
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between bg-white shadow-md p-4">
@@ -15,6 +15,7 @@ const Header = async () => {
         <Tabs />
       </div>
       {session ? <SignOut /> : <SignIn />}
+
     </nav>
   )
 }
