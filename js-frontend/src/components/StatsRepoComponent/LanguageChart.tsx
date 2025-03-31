@@ -10,57 +10,64 @@ interface LanguagesChartProps {
 const LanguagesChart: React.FC<LanguagesChartProps> = ({ languagesData }) => {
   console.log('languagesData', languagesData)
 
-  const getThemeChartColors = () => {
-    return [
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--chart-1')
-        .trim(),
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--chart-2')
-        .trim(),
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--chart-3')
-        .trim(),
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--chart-4')
-        .trim(),
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--chart-5')
-        .trim(),
-    ]
-  }
+const getThemeChartColors = () => {
+  return [
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--chart-1')
+      .trim(),
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--chart-2')
+      .trim(),
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--chart-3')
+      .trim(),
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--chart-4')
+      .trim(),
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--chart-5')
+      .trim(),
+  ]
+}
 
-  const languageChartData = {
-    labels: languagesData ? Object.keys(languagesData) : [],
-    datasets: [
-      {
-        data: languagesData ? Object.values(languagesData) : [],
-        backgroundColor: languagesData
-          ? // Use theme colors first, then fall back to generateColors if there are more languages than theme colors
-            [
+const languageChartData = {
+  labels:
+    languagesData && typeof languagesData === 'object'
+      ? Object.keys(languagesData)
+      : [], // Fallback to an empty array if languagesData is not an object
+  datasets: [
+    {
+      data:
+        languagesData && typeof languagesData === 'object'
+          ? Object.values(languagesData)
+          : [], // Fallback to an empty array if languagesData is not an object
+      backgroundColor:
+        languagesData && typeof languagesData === 'object'
+          ? [
               ...getThemeChartColors(),
               ...generateColors(
                 Math.max(0, Object.keys(languagesData).length - 5)
               ).colors,
             ]
-          : [],
-        borderWidth: 2,
-        borderColor: getComputedStyle(document.documentElement)
-          .getPropertyValue('--background')
-          .trim(),
-        hoverOffset: 10,
-        hoverBorderWidth: 3,
-      },
-    ],
-  }
+          : [], // Fallback to an empty array if languagesData is not an object
+      borderWidth: 2,
+      borderColor: getComputedStyle(document.documentElement)
+        .getPropertyValue('--background')
+        .trim(),
+      hoverOffset: 10,
+      hoverBorderWidth: 3,
+    },
+  ],
+}
 
-  const formatBytes = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes'
-    const k = 1024
-    const sizes = ['Bytes', 'KB', 'MB', 'GB']
-    const i = Math.floor(Math.log(bytes) / Math.log(k))
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-  }
+const formatBytes = (bytes: number) => {
+  if (bytes === 0) return '0 Bytes'
+  const k = 1024
+  const sizes = ['Bytes', 'KB', 'MB', 'GB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+}
+
 
   return (
     <div className="bg-card rounded-xl shadow-md p-6 border border-border/50 transition-all hover:shadow-lg">

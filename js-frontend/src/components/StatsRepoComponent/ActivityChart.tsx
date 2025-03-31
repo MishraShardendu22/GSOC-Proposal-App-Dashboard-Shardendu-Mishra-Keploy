@@ -13,16 +13,20 @@ const CommitActivityChart: React.FC<CommitActivityChartProps> = ({
 }) => {
 
   const commitChartData = {
-    labels: commitActivity.slice(0, 12).map((week) =>
-      new Date(week.week * 1000).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-      })
-    ),
+    labels: Array.isArray(commitActivity)
+      ? commitActivity.slice(0, 12).map((week) =>
+          new Date(week.week * 1000).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+          })
+        )
+      : [],
     datasets: [
       {
         label: 'Commits',
-        data: commitActivity.slice(0, 12).map((week) => week.total),
+        data: Array.isArray(commitActivity) 
+        ? commitActivity.slice(0, 12).map((week) => week.total || 0) 
+        : [],
         fill: true,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',

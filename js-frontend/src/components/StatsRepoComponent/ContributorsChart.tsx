@@ -10,30 +10,32 @@ interface ContributorsChartProps {
 const ContributorsChart: React.FC<ContributorsChartProps> = ({
   contributors,
 }) => {
-  // Get theme colors from CSS variables
   const getThemeColor = (variable: string) => {
     return getComputedStyle(document.documentElement)
       .getPropertyValue(variable)
       .trim()
   }
 
-  const contributorsChartData = {
-    labels: contributors.slice(0, 10).map((c) => c.login),
-    datasets: [
-      {
-        label: 'Contributions',
-        data: contributors.slice(0, 10).map((c) => c.contributions),
-        backgroundColor:
-          getThemeColor('--primary') || 'rgba(54, 162, 235, 0.6)',
-        borderColor:
-          getThemeColor('--primary-foreground') || 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-        borderRadius: 6,
-        hoverBackgroundColor:
-          getThemeColor('--primary-hover') || 'rgba(54, 162, 235, 0.8)',
-      },
-    ],
-  }
+const contributorsChartData = {
+  labels: Array.isArray(contributors)
+    ? contributors.slice(0, 10).map((c) => c?.login || 'Unknown')
+    : [], // Default to an empty array if contributors is not valid
+  datasets: [
+    {
+      label: 'Contributions',
+      data: Array.isArray(contributors)
+        ? contributors.slice(0, 10).map((c) => c?.contributions || 0)
+        : [], // Default to an empty array if contributors is not valid
+      backgroundColor: getThemeColor('--primary') || 'rgba(54, 162, 235, 0.6)',
+      borderColor:
+        getThemeColor('--primary-foreground') || 'rgba(54, 162, 235, 1)',
+      borderWidth: 2,
+      borderRadius: 6,
+      hoverBackgroundColor:
+        getThemeColor('--primary-hover') || 'rgba(54, 162, 235, 0.8)',
+    },
+  ],
+}
 
   return (
     <div className="bg-card rounded-xl shadow-md p-6 border border-border/50 transition-all hover:shadow-lg">
