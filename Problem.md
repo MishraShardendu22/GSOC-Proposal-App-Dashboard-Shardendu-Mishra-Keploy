@@ -185,10 +185,3 @@ You can use tools like **Figma, Adobe XD, or Balsamiq** to design wireframes.
 4. **Develop a Proof-of-Concept (PoC)** – Implement a basic dashboard with sample test data.
 5. **Integrate Real Data Sources** – Connect GitHub/GitLab APIs and Keploy’s test results.
 6. **Optimize & Extend** – Improve UI/UX and add custom templates for test reports.
-
-
-<!-- Pages -->
-
-1.) Profile - Just the user details iamge and other things.
-2.) Dashboard - Shows Analytics of account like total pr's and other detail
-3.) Repositories - Shows details of all repos and on selection shows detials of a specific repo

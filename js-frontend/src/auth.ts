@@ -41,7 +41,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           subscriptions_url: profile?.subscriptions_url as string,
           organizations_url: profile?.organizations_url as string,
         };
-
         await RegisterUser(NewUser);
         return true;
       } catch (error) {
