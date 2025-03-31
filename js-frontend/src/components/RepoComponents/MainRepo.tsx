@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // File: components/github/GitHubRepos.tsx
 'use client'
-import ErrorState from './Error'
 import { useState, useEffect } from 'react'
 import RepoCard from './RepoCard'
 import RepoStats from './RepoStats'
@@ -9,6 +8,7 @@ import Pagination from './Pagination'
 import { Repo, SortOption } from './types'
 import { EnhancedSpinner } from '@/components/Loader'
 import FilterSortControls from './FilterSort'
+import ErrorState from './Error'
 
 const GitHubRepos = ({username} : {username: string}) => {
   console.log(username)

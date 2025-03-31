@@ -1,7 +1,7 @@
 import React from 'react'
-import GitHubRepos from './component/MainRepo'
 import { auth } from '@/auth'
 import { EnhancedSpinner } from '@/components/Loader'
+import GitHubRepos from '@/components/RepoComponents/MainRepo'
 
 const page = async () => {
   const session = await auth()
