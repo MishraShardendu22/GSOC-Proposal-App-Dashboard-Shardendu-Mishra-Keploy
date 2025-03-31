@@ -3,17 +3,17 @@
 
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import RepoHeader from './RepoComponent/RepoHeader'
+import RepoHeader from '../../../components/RepoComponent/RepoHeader'
 import { EnhancedSpinner } from '@/components/Loader'
-import { Activity, Contributor, ContributorStats } from './RepoComponent/Types'
-import LanguagesChart from './RepoComponent/LanguageChart'
-import ContributorsChart from './RepoComponent/ContributorsChart'
-import CommitActivityChart from './RepoComponent/ActivityChart'
-import ActivityTypesChart from './RepoComponent/TypesChart'
-import TopicsSection from './RepoComponent/TopicSection'
-import ContributorActivitySection from './RepoComponent/ActivitySection'
-import RepositoryOverview from './RepoComponent/OverView'
-import ContributorsSection from './RepoComponent/ContributionSection'
+import { Activity, Contributor, ContributorStats } from '../../../components/RepoComponent/Types'
+import LanguagesChart from '../../../components/RepoComponent/LanguageChart'
+import ContributorsChart from '../../../components/RepoComponent/ContributorsChart'
+import CommitActivityChart from '../../../components/RepoComponent/ActivityChart'
+import ActivityTypesChart from '../../../components/RepoComponent/TypesChart'
+import TopicsSection from '../../../components/RepoComponent/TopicSection'
+import ContributorActivitySection from '../../../components/RepoComponent/ActivitySection'
+import RepositoryOverview from '../../../components/RepoComponent/OverView'
+import ContributorsSection from '../../../components/RepoComponent/ContributionSection'
 
 export default function RepoStats({
   params,
