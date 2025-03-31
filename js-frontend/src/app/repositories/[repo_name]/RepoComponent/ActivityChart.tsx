@@ -2,6 +2,7 @@
 // Component/CommitActivityChart.tsx
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface CommitActivityChartProps {
   commitActivity: any[]
@@ -10,6 +11,7 @@ interface CommitActivityChartProps {
 const CommitActivityChart: React.FC<CommitActivityChartProps> = ({
   commitActivity,
 }) => {
+
   const commitChartData = {
     labels: commitActivity.slice(0, 12).map((week) =>
       new Date(week.week * 1000).toLocaleDateString('en-US', {
@@ -21,47 +23,83 @@ const CommitActivityChart: React.FC<CommitActivityChartProps> = ({
       {
         label: 'Commits',
         data: commitActivity.slice(0, 12).map((week) => week.total),
-        fill: false,
-        backgroundColor: 'rgba(75, 192, 192, 0.4)',
+        fill: true,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
-        tension: 0.1,
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
+        pointRadius: 4,
+        tension: 0.3,
       },
     ],
   }
 
+  // Chart options for better styling
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+        labels: {
+          font: {
+            size: 12,
+          },
+          padding: 20,
+        },
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: 10,
+        cornerRadius: 4,
+        titleFont: {
+          size: 14,
+        },
+        bodyFont: {
+          size: 12,
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: 'rgba(0, 0, 0, 0.05)',
+        },
+        ticks: {
+          precision: 0,
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  }
+
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-xl font-bold mb-4 text-gray-800">Commit Activity</h2>
-      <div className="h-64">
-        {commitActivity.length > 0 ? (
-          <Line
-            data={commitChartData}
-            options={{
-              responsive: true,
-              plugins: {
-                legend: {
-                  display: false,
-                },
-                title: {
-                  display: true,
-                  text: 'Weekly Commit Activity',
-                },
-              },
-              scales: {
-                y: {
-                  title: {
-                    display: true,
-                    text: 'Number of Commits',
-                  },
-                },
-              },
-            }}
-          />
-        ) : (
-          'No commit activity data available'
-        )}
-      </div>
-    </div>
+    <Card className="shadow-md bg-trasparent rounded-lg overflow-hidden">
+      <CardHeader className="pb-2 border-b">
+        <CardTitle className="text-lg font-medium text-gray-800">
+          Commit Activity
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-4">
+        <div className="h-64 w-full">
+          {commitActivity.length > 0 ? (
+            <Line data={commitChartData} options={options} />
+          ) : (
+            <div className="h-full w-full flex items-center justify-center text-gray-500">
+              No commit activity data available
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   )
 }
 

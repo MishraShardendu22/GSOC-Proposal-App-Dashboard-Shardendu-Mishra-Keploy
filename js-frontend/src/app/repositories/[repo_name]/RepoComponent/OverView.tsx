@@ -1,6 +1,31 @@
 import React from 'react'
 import { Bar } from 'react-chartjs-2'
-import { ContributorStats } from './Types'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js'
+
+// Register Chart.js components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+
+interface ContributorStats {
+  total: number
+  author: {
+    login: string
+    avatar_url: string
+  }
+  weeks: {
+    w: number
+    a: number
+    d: number
+    c: number
+  }[]
+}
 
 interface RepositoryOverviewProps {
   lineStats: { added: number; deleted: number }
@@ -26,33 +51,32 @@ const RepositoryOverview: React.FC<RepositoryOverviewProps> = ({
       {
         label: 'Repository Statistics',
         data: [linesAdded, linesDeleted, totalCommits],
-        backgroundColor: [
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-        ],
+        backgroundColor: ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)'],
+        borderWidth: 1,
+        borderColor: ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)'],
       },
     ],
   }
 
-
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-      <h2 className="text-xl font-bold mb-4 text-gray-800">
+    <div className="rounded-lg border border-border bg-card p-4 shadow-sm">
+      <h2 className="mb-4 text-xl font-semibold text-card-foreground">
         Repository Overview
       </h2>
-      <div className="h-64">
+
+      <div className="h-64 w-full">
         <Bar
           data={combinedStatsData}
           options={{
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
               y: {
-                type: 'linear', // Switch scale dynamically
-                suggestedMin: 1, // Prevents zero values
-                grace: '5%',
+                beginAtZero: true,
                 ticks: {
-                  callback: (value) => Number(value).toLocaleString(), // Format numbers
+                  callback: function (value) {
+                    return Number(value).toLocaleString() // Format numbers
+                  },
                 },
               },
             },
@@ -60,6 +84,11 @@ const RepositoryOverview: React.FC<RepositoryOverviewProps> = ({
               title: {
                 display: true,
                 text: 'Repository Statistics Overview',
+                color: 'var(--card-foreground)',
+                font: {
+                  size: 16,
+                  family: 'var(--font-sans)',
+                },
               },
               tooltip: {
                 callbacks: {
@@ -69,9 +98,35 @@ const RepositoryOverview: React.FC<RepositoryOverviewProps> = ({
                   },
                 },
               },
+              legend: {
+                labels: {
+                  color: 'var(--card-foreground)',
+                },
+              },
             },
           }}
         />
+      </div>
+
+      <div className="mt-6 grid grid-cols-3 gap-4">
+        <div className="rounded-md bg-muted p-3 text-center">
+          <div className="text-xl font-bold text-primary">
+            {linesAdded.toLocaleString()}
+          </div>
+          <div className="text-sm text-muted-foreground">Lines Added</div>
+        </div>
+        <div className="rounded-md bg-muted p-3 text-center">
+          <div className="text-xl font-bold text-secondary">
+            {linesDeleted.toLocaleString()}
+          </div>
+          <div className="text-sm text-muted-foreground">Lines Deleted</div>
+        </div>
+        <div className="rounded-md bg-muted p-3 text-center">
+          <div className="text-xl font-bold text-accent">
+            {totalCommits.toLocaleString()}
+          </div>
+          <div className="text-sm text-muted-foreground">Total Commits</div>
+        </div>
       </div>
     </div>
   )

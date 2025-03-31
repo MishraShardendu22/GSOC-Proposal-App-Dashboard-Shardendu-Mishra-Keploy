@@ -161,8 +161,8 @@ export default function RepoStats({
       </div>
 
       <TopicsSection topics={topicsData} />
-      <ContributorActivitySection stats={stats} />
       <ContributorsSection contributors={contributors} />
+      <ContributorActivitySection stats={stats} />
       <RepositoryOverview lineStats={lineStats} stats={stats} />
     </div>
   )
