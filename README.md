@@ -33,6 +33,7 @@ This application displays detailed statistics for GitHub users and their reposit
 ## Demo
 - **Demo Video:** [Watch the demo on Loom](https://www.loom.com/share/dee0f5f41ba242cca0c3e43f1fc198aa?sid=e228765b-fa4b-4f3b-bd79-7a790ad453ad)
 - **Live Dashboard:** [View the live dashboard](https://keploy-dashboard-shardendu-mishra-gsoc.vercel.app/)
+- **Roadmap of App:** [Notion Roadmap](https://www.notion.so/GSoC-1c5a76fcf2f98076ad1afd3c43ad3ba8)
 
 ## Installation
 
