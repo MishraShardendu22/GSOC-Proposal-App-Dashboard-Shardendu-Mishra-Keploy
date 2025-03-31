@@ -1,13 +1,11 @@
 import React from 'react'
 import { auth } from '@/auth'
 import { EnhancedSpinner } from '@/components/Loader'
-import GitHubRepos from '@/components/RepoComponents/MainRepo'
+import ClientComponent from '../../components/RepoComponents/Storage'
 
-const page = async () => {
+const Page = async () => {
   const session = await auth()
-  const username = session?.user?.login ?? ""
-  
-  console.log(username)
+  const username = session?.user?.login ?? ''
 
   if (!username) {
     return <EnhancedSpinner />
@@ -15,9 +13,9 @@ const page = async () => {
 
   return (
     <div>
-      {username && <GitHubRepos username={username} />}
+      <ClientComponent username={username} />
     </div>
   )
 }
 
-export default page
+export default Page
