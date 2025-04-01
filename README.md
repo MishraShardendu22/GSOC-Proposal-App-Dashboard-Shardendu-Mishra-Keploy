@@ -51,7 +51,7 @@ This application displays detailed statistics for GitHub users and their reposit
 2. **Install dependencies for the frontend:**
    ```bash
    cd frontend
-   npm install
+   npm install --legacy-peer-deps
    ```
 3. **Install dependencies for the backend:**
    ```bash
